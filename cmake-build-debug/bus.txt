@@ -1,0 +1,7 @@
+Passenger Name: dax paul
+From: kahama to dar To: dar
+Bus Name: frester Plate No: 234
+Seat No: 3
+Fare: 5000.00
+Total Fare: 5020.00
+-------------------------------
