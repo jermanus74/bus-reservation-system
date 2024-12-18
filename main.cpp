@@ -227,7 +227,7 @@ void addBus(vector<Bus> &buses) {
     buses.emplace_back(name, from, to, fare, seats);
     cout << "Bus added successfully!\n";
 }
-
+//function to edit bus details
 void editBus(vector<Bus> &buses) {
     string name;
     cout << "Enter the name of the bus to edit: ";
