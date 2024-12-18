@@ -361,24 +361,19 @@ void cancelBooking(vector<Bus> &buses) {
 //     cout << "Bus data saved successfully!\n";
 // }
 
-// void loadBusesFromFile(vector<Bus> &buses) {
-//     ifstream inFile(fileName);
-//     if (!inFile) {
-//         return;
-//     }
+void loadBusesFromFile(vector<Bus> &buses) {
+     ifstream inFile(fileName);
+    if (!inFile) {
+        return;    }
 
-//     string name, from, to;
-//     double fare;
-//     int totalSeats;
-//     while (inFile >> name >> from >> to >> fare >> totalSeats) {
-//         Bus bus(name, from, to, fare, totalSeats);
-//         int seat;
-//         while (inFile >> seat) {
-//             // End of seat list
-//             if (seat == -1) break; 
-//             bus.cancelSeats({seat});
-//         }
-//         buses.push_back(bus);
-//     }
-//     inFile.close();
-// }
+    string name, from, to;
+   double fare;
+     int totalSeats;
+while (inFile >> name >> from >> to >> fare >> totalSeats) {
+       Bus bus(name, from, to, fare, totalSeats);/         int seat;        while (inFile >> seat) {
+            End of seat list
+            if (seat == -1) break;              bus.cancelSeats({seat});        }
+        buses.push_back(bus);
+    }
+    inFile.close();
+ }
