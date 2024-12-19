@@ -256,7 +256,7 @@ void editBus(vector<Bus> &buses) {
     }
     cout << "Bus not found!\n";
 }
-
+//function to display Buses availability
 void displayBuses(const vector<Bus> &buses) {
     if (buses.empty()) {
         cout << "No buses available.\n";
@@ -268,7 +268,7 @@ void displayBuses(const vector<Bus> &buses) {
         bus.displayBus();
     }
 }
-
+//calling bookSeat function
 void bookSeat(vector<Bus> &buses) {
     string name;
     int count;
@@ -320,7 +320,7 @@ void bookSeat(vector<Bus> &buses) {
     }
     cout << "Bus not found!\n";
 }
-
+//calling the cancelBooking function
 void cancelBooking(vector<Bus> &buses) {
     string name;
     int count;
