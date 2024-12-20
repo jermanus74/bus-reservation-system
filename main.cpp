@@ -7,9 +7,8 @@
 
 using namespace std;
 
-// Class representing a Bus
-class Bus {
-private:
+// Struct representing a Bus
+struct Bus {
     string busName;
     string from;
     string to;
@@ -17,7 +16,6 @@ private:
     int totalSeats;
     vector<int> availableSeats;
 
-public:
     Bus(string name, string from, string to, double fare, int seats)
         : busName(name), from(from), to(to), fare(fare), totalSeats(seats) {
         for (int i = 1; i <= seats; ++i) {
@@ -79,17 +77,17 @@ public:
         }
     }
 
-    void saveToFile(ofstream &outFile) const {
+    void saveToFile(ofstream& outFile) const {
         outFile << busName << " " << from << " " << to << " " << fare << " " << totalSeats << " ";
         for (int seat : availableSeats) {
             outFile << seat << " ";
         }
-        outFile << "\n";
+        outFile << "-1\n"; // Marker to indicate end of seat list
     }
 };
 
-class Passenger {
-public:
+// Struct representing a Passenger
+struct Passenger {
     string name;
     int seatNumber;
 
@@ -105,15 +103,15 @@ public:
 };
 
 // Function prototypes
-void managerMenu(vector<Bus> &buses);
-void passengerMenu(vector<Bus> &buses);
-void addBus(vector<Bus> &buses);
-void editBus(vector<Bus> &buses);
-void displayBuses(const vector<Bus> &buses);
-void bookSeat(vector<Bus> &buses);
-void cancelBooking(vector<Bus> &buses);
-void saveBusesToFile(const vector<Bus> &buses);
-void loadBusesFromFile(vector<Bus> &buses);
+void managerMenu(vector<Bus>& buses);
+void passengerMenu(vector<Bus>& buses);
+void addBus(vector<Bus>& buses);
+void editBus(vector<Bus>& buses);
+void displayBuses(const vector<Bus>& buses);
+void bookSeat(vector<Bus>& buses);
+void cancelBooking(vector<Bus>& buses);
+void saveBusesToFile(const vector<Bus>& buses);
+void loadBusesFromFile(vector<Bus>& buses);
 
 const string fileName = "buses.txt";
 
@@ -148,6 +146,9 @@ int main() {
 
     return 0;
 }
+
+
+
 
 void managerMenu(vector<Bus> &buses) {
     int choice;
