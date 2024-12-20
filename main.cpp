@@ -82,7 +82,7 @@ struct Bus {
         for (int seat : availableSeats) {
             outFile << seat << " ";
         }
-        outFile << "-1\n"; // Marker to indicate end of seat list
+        outFile << "-1\n"; 
     }
 };
 
