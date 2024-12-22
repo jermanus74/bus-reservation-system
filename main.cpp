@@ -7,9 +7,8 @@
 
 using namespace std;
 
-// Class representing a Bus
-class Bus {
-private:
+// Struct representing a Bus
+struct Bus {
     string busName;
     string from;
     string to;
@@ -17,7 +16,6 @@ private:
     int totalSeats;
     vector<int> availableSeats;
 
-public:
     Bus(string name, string from, string to, double fare, int seats)
         : busName(name), from(from), to(to), fare(fare), totalSeats(seats) {
         for (int i = 1; i <= seats; ++i) {
@@ -79,17 +77,17 @@ public:
         }
     }
 
-    void saveToFile(ofstream &outFile) const {
+    void saveToFile(ofstream& outFile) const {
         outFile << busName << " " << from << " " << to << " " << fare << " " << totalSeats << " ";
         for (int seat : availableSeats) {
             outFile << seat << " ";
         }
-        outFile << "\n";
+        outFile << "-1\n"; 
     }
 };
 
-class Passenger {
-public:
+// Struct representing a Passenger
+struct Passenger {
     string name;
     int seatNumber;
 
@@ -105,15 +103,15 @@ public:
 };
 
 // Function prototypes
-void managerMenu(vector<Bus> &buses);
-void passengerMenu(vector<Bus> &buses);
-void addBus(vector<Bus> &buses);
-void editBus(vector<Bus> &buses);
-void displayBuses(const vector<Bus> &buses);
-void bookSeat(vector<Bus> &buses);
-void cancelBooking(vector<Bus> &buses);
-void saveBusesToFile(const vector<Bus> &buses);
-void loadBusesFromFile(vector<Bus> &buses);
+void managerMenu(vector<Bus>& buses);
+void passengerMenu(vector<Bus>& buses);
+void addBus(vector<Bus>& buses);
+void editBus(vector<Bus>& buses);
+void displayBuses(const vector<Bus>& buses);
+void bookSeat(vector<Bus>& buses);
+void cancelBooking(vector<Bus>& buses);
+void saveBusesToFile(const vector<Bus>& buses);
+void loadBusesFromFile(vector<Bus>& buses);
 
 const string fileName = "buses.txt";
 
@@ -148,6 +146,9 @@ int main() {
 
     return 0;
 }
+
+
+
 
 void managerMenu(vector<Bus> &buses) {
     int choice;
@@ -227,7 +228,7 @@ void addBus(vector<Bus> &buses) {
     buses.emplace_back(name, from, to, fare, seats);
     cout << "Bus added successfully!\n";
 }
-
+//function to edit bus details
 void editBus(vector<Bus> &buses) {
     string name;
     cout << "Enter the name of the bus to edit: ";
@@ -256,7 +257,7 @@ void editBus(vector<Bus> &buses) {
     }
     cout << "Bus not found!\n";
 }
-
+//function to display Buses availability
 void displayBuses(const vector<Bus> &buses) {
     if (buses.empty()) {
         cout << "No buses available.\n";
@@ -268,7 +269,7 @@ void displayBuses(const vector<Bus> &buses) {
         bus.displayBus();
     }
 }
-
+//calling bookSeat function
 void bookSeat(vector<Bus> &buses) {
     string name;
     int count;
@@ -320,7 +321,7 @@ void bookSeat(vector<Bus> &buses) {
     }
     cout << "Bus not found!\n";
 }
-
+//calling the cancelBooking function
 void cancelBooking(vector<Bus> &buses) {
     string name;
     int count;
@@ -347,38 +348,33 @@ void cancelBooking(vector<Bus> &buses) {
     cout << "Bus not found!\n";
 }
 
-void saveBusesToFile(const vector<Bus> &buses) {
-    ofstream outFile(fileName);
-    if (!outFile) {
-        cout << "Error saving to file!\n";
-        return;
-    }
+// void saveBusesToFile(const vector<Bus> &buses) {
+//     ofstream outFile(fileName);
+//     if (!outFile) {
+//         cout << "Error saving to file!\n";
+//         return;
+//     }
 
-    for (const auto &bus : buses) {
-        bus.saveToFile(outFile);
-    }
-    outFile.close();
-    cout << "Bus data saved successfully!\n";
-}
+//     for (const auto &bus : buses) {
+//         bus.saveToFile(outFile);
+//     }
+//     outFile.close();
+//     cout << "Bus data saved successfully!\n";
+// }
 
 void loadBusesFromFile(vector<Bus> &buses) {
-    ifstream inFile(fileName);
+     ifstream inFile(fileName);
     if (!inFile) {
-        return;
-    }
+        return;    }
 
     string name, from, to;
-    double fare;
-    int totalSeats;
-    while (inFile >> name >> from >> to >> fare >> totalSeats) {
-        Bus bus(name, from, to, fare, totalSeats);
-        int seat;
-        while (inFile >> seat) {
-            // End of seat list
-            if (seat == -1) break; 
-            bus.cancelSeats({seat});
-        }
+   double fare;
+     int totalSeats;
+while (inFile >> name >> from >> to >> fare >> totalSeats) {
+       Bus bus(name, from, to, fare, totalSeats);/         int seat;        while (inFile >> seat) {
+            End of seat list
+            if (seat == -1) break;              bus.cancelSeats({seat});        }
         buses.push_back(bus);
     }
     inFile.close();
-}
+ }
